@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88e5cbcee6404c4db74e7f33c33b3c6, type: 3}
+  m_Name: DeckDefinition
+  m_EditorClassIdentifier: Assembly-CSharp::DeckDefinition
+  Data:
+  - suit: 0
+    value: 1
+    texture: {fileID: 2800000, guid: 5cc5f4b6f9dde4842b2df51e2dc97e76, type: 3}
+  - suit: 0
+    value: 2
+    texture: {fileID: 2800000, guid: 258fccbaeb4dc9e4eb0c8e81c1e852fc, type: 3}
+  - suit: 0
+    value: 3
+    texture: {fileID: 2800000, guid: fb88f81143d00024790ea55b4a6f67eb, type: 3}
+  - suit: 0
+    value: 4
+    texture: {fileID: 2800000, guid: 89c504d7c6f096a4489b6488d4e6f385, type: 3}
+  - suit: 0
+    value: 5
+    texture: {fileID: 2800000, guid: 6c36741246d822c43929b8d2e16e666a, type: 3}
+  - suit: 0
+    value: 6
+    texture: {fileID: 2800000, guid: 00de19d147190954396170da9d1a4736, type: 3}
+  - suit: 0
+    value: 7
+    texture: {fileID: 2800000, guid: 082bb4c7e705fe94e8fee1a7ea63faab, type: 3}
+  - suit: 0
+    value: 8
+    texture: {fileID: 2800000, guid: 74651f4edc973d746a25dc850322b132, type: 3}
+  - suit: 0
+    value: 9
+    texture: {fileID: 2800000, guid: 9943dc03271457b40ba25176be60e27d, type: 3}
+  - suit: 0
+    value: 10
+    texture: {fileID: 2800000, guid: ca76f6052c3c5004c9b2c1554aa0dab3, type: 3}
+  - suit: 0
+    value: 11
+    texture: {fileID: 2800000, guid: 10a9a9c5461259c44a0644673eb41fcc, type: 3}
+  - suit: 0
+    value: 12
+    texture: {fileID: 2800000, guid: 1c134ab4f2c89134e9145f2c5171f728, type: 3}
+  - suit: 0
+    value: 13
+    texture: {fileID: 2800000, guid: 80a86b04705f6f6409bd3d6282b687ef, type: 3}
+  - suit: 1
+    value: 1
+    texture: {fileID: 2800000, guid: 0fac46626a7c7ac468f90fef1a225c2f, type: 3}
+  - suit: 1
+    value: 2
+    texture: {fileID: 2800000, guid: 542eebdf7c8e44b4c9fdd56bd84b836f, type: 3}
+  - suit: 1
+    value: 3
+    texture: {fileID: 2800000, guid: 75590576afe6550449e70b16268fa00a, type: 3}
+  - suit: 1
+    value: 4
+    texture: {fileID: 2800000, guid: bae72671093b4814cbeb6a45da548d2b, type: 3}
+  - suit: 1
+    value: 5
+    texture: {fileID: 2800000, guid: 4b2075e4cc91c694a9f6dd761ffe7ee8, type: 3}
+  - suit: 1
+    value: 6
+    texture: {fileID: 2800000, guid: 513af49a681e0f04291f511bfc71922c, type: 3}
+  - suit: 1
+    value: 7
+    texture: {fileID: 2800000, guid: 99a7fc304a3872848b81d2fb547d8fa2, type: 3}
+  - suit: 1
+    value: 8
+    texture: {fileID: 2800000, guid: 541f8034fbb1bba4c8d630a03d6e9c12, type: 3}
+  - suit: 1
+    value: 9
+    texture: {fileID: 2800000, guid: 4d44ae96db1d3e3479aebc58e5457913, type: 3}
+  - suit: 1
+    value: 10
+    texture: {fileID: 2800000, guid: 28e3fa6d9e800d54681b13e81df39064, type: 3}
+  - suit: 1
+    value: 11
+    texture: {fileID: 2800000, guid: f40da9234768855498bacd4aad74cc4d, type: 3}
+  - suit: 1
+    value: 12
+    texture: {fileID: 2800000, guid: e8b5ab1c39d5b664a8959b15edad889d, type: 3}
+  - suit: 1
+    value: 13
+    texture: {fileID: 2800000, guid: 4d7cc75efcaf6614abe66e9f800c4af8, type: 3}
+  - suit: 2
+    value: 1
+    texture: {fileID: 2800000, guid: 34caa6214624b3747a88f2dfec16b81d, type: 3}
+  - suit: 2
+    value: 2
+    texture: {fileID: 2800000, guid: cb5b01a4bb605914c85a2c85197756d7, type: 3}
+  - suit: 2
+    value: 3
+    texture: {fileID: 2800000, guid: b9f3e4ff52f737c49a0b091f00d9713f, type: 3}
+  - suit: 2
+    value: 4
+    texture: {fileID: 2800000, guid: b80d1554fb799fe4dbb04c98d96d5b35, type: 3}
+  - suit: 2
+    value: 5
+    texture: {fileID: 2800000, guid: 3ce1d52913dbbeb40a0011af1c9ac869, type: 3}
+  - suit: 2
+    value: 6
+    texture: {fileID: 2800000, guid: 8921e8d20388e084993ccc74e5ddb4b0, type: 3}
+  - suit: 2
+    value: 7
+    texture: {fileID: 2800000, guid: 765e0f36586c6ee428402807edb564bc, type: 3}
+  - suit: 2
+    value: 8
+    texture: {fileID: 2800000, guid: b2c432a4ab603cd4db343c6758b8ab91, type: 3}
+  - suit: 2
+    value: 9
+    texture: {fileID: 2800000, guid: 3cebc4416f553d449ab9cf9f6bc9f7dd, type: 3}
+  - suit: 2
+    value: 10
+    texture: {fileID: 2800000, guid: 7f38a6a34cdadd9439fff0ef64d11274, type: 3}
+  - suit: 2
+    value: 11
+    texture: {fileID: 2800000, guid: 6eb5dfc5c0349fc419a2f5f7abc41f4d, type: 3}
+  - suit: 2
+    value: 12
+    texture: {fileID: 2800000, guid: 6644fd1b340139a4db3235c66a8b324d, type: 3}
+  - suit: 2
+    value: 13
+    texture: {fileID: 2800000, guid: 7f7e758009778274681c9da2dc90ba89, type: 3}
+  - suit: 3
+    value: 1
+    texture: {fileID: 2800000, guid: 5ceed536c05dcf540b345c9efb714763, type: 3}
+  - suit: 3
+    value: 2
+    texture: {fileID: 2800000, guid: d49e2dff18773d4458a5e372f4524a6e, type: 3}
+  - suit: 3
+    value: 3
+    texture: {fileID: 2800000, guid: 3a0b6d689855c2c479c7db11e69d3e8f, type: 3}
+  - suit: 3
+    value: 4
+    texture: {fileID: 2800000, guid: 55c3b831ed9dbfb498ee3e18427025d8, type: 3}
+  - suit: 3
+    value: 5
+    texture: {fileID: 2800000, guid: 5058ce5948db7f34597b54f855d17722, type: 3}
+  - suit: 3
+    value: 6
+    texture: {fileID: 2800000, guid: 0a153e3b4aa179641bc7a39cce1af083, type: 3}
+  - suit: 3
+    value: 7
+    texture: {fileID: 2800000, guid: 098faf1aaf0ba7b45a91e329db6930fa, type: 3}
+  - suit: 3
+    value: 8
+    texture: {fileID: 2800000, guid: 7f7d36d01225f644da851f08b70eb3c4, type: 3}
+  - suit: 3
+    value: 9
+    texture: {fileID: 2800000, guid: 758a47397c61bf84f8278a29cf74b6ea, type: 3}
+  - suit: 3
+    value: 10
+    texture: {fileID: 2800000, guid: d5f6d4aae33391c4e85047aac77e1bc1, type: 3}
+  - suit: 3
+    value: 11
+    texture: {fileID: 2800000, guid: 4c99a9bd71785e44e910eeb5e8c40a07, type: 3}
+  - suit: 3
+    value: 12
+    texture: {fileID: 2800000, guid: e8a8ccded8b9eb44ca2888b9d09f8944, type: 3}
+  - suit: 3
+    value: 13
+    texture: {fileID: 2800000, guid: 491855b5be0df7440bf0f451b1eb9c30, type: 3}
+  backTexture: {fileID: 2800000, guid: dcd93334bb0571a46a0d64f6008ca5b1, type: 3}
