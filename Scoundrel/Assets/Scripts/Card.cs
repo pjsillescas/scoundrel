@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -5,23 +6,56 @@ public class Card : MonoBehaviour
 	public enum Suit { Diamonds, Hearts, Clubs, Spades, }
 
 	[SerializeField]
-	private Texture texture;
+	private MeshRenderer front;
 	[SerializeField]
-	private Suit suit;
-	[SerializeField]
-	private int value;
-	[SerializeField]
+	private MeshRenderer back;
+
 	private Material frontMaterial;
+	private Material backMaterial;
 
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
+	private Suit suit;
+	private int value;
+
+	private void Awake()
 	{
-
+		frontMaterial = front.material;
+		backMaterial = back.material;
 	}
 
-	// Update is called once per frame
-	void Update()
+	public Card Load(CardData data, Texture backTexture)
 	{
+		suit = data.suit;
+		value = data.value;
+		frontMaterial.SetTexture("_MainTex", data.texture);
+		backMaterial.SetTexture("_MainTex", backTexture);
 
+		return this;
 	}
+
+	public void Flip()
+	{
+		StartCoroutine(FlipCoroutine());
+	}
+
+	private IEnumerator FlipCoroutine()
+	{
+		var goForward = Mathf.Abs(transform.rotation.z) <= 0.01f;
+		var zTarget = goForward ? 180 : 0;
+		var angle = goForward ? 9 : -9;
+		var currentAngle = goForward ? 0 : 180;
+		while (Mathf.Abs(currentAngle - zTarget) > 0)
+		{
+			//Debug.Log("rotate");
+			transform.Rotate(0, 0, angle);
+			currentAngle += angle;
+			yield return new WaitForSeconds(0.1f);
+		}
+		
+		yield return null;
+	}
+
+
+
+	public Suit GetSuit() => suit;
+	public int GetValue() => value;
 }
