@@ -11,6 +11,9 @@ public class DeckManager : MonoBehaviour
 	[SerializeField]
 	private GameObject CardPrefab;
 
+	[SerializeField]
+	private Transform DeckPosition;
+
 	private List<Card> deck;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,14 +30,14 @@ public class DeckManager : MonoBehaviour
 
 		var displacement = Vector3.zero;
 		deck.ForEach(card => {
-			displacement += new Vector3(10,0,0);
-			card.transform.position = displacement;
+			displacement += new Vector3(0,0,-0.1f);
+			card.transform.position = displacement + DeckPosition.position;
 			card.transform.Rotate(90, 0, 0);
 		});
 
-		StartCoroutine(WaitAndFlipDeck());
+		//StartCoroutine(WaitAndFlipDeck());
 	}
-
+	/*
 	private IEnumerator WaitAndFlipDeck()
 	{
 		yield return new WaitForSeconds(2f);
@@ -42,7 +45,7 @@ public class DeckManager : MonoBehaviour
 		deck.ForEach(card => card.Flip());
 		yield return null;
 	}
-
+	*/
 	// Update is called once per frame
 	void Update()
 	{
