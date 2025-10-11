@@ -27,7 +27,7 @@ public class DeckManager : MonoBehaviour
 		var validSuites = new List<Card.Suit>() { Card.Suit.Spades, Card.Suit.Clubs };
 		deck = new();
 
-		deckData.Data.Where(data => validSuites.Contains(data.suit) || data.value > 10)
+		deckData.Data.Where(data => validSuites.Contains(data.suit) || 1 < data.value && data.value <= 10)
 			.Select(data => (Instantiate(CardPrefab).GetComponent<Card>()).Load(data, deckData.backTexture)).ToList().ForEach(deck.Add);
 
 		deck.Shuffle();

@@ -10,16 +10,24 @@ public class RoomCardPosition : MonoBehaviour
 	}
 	public bool IsBusy() => card != null;
 
-	public void SetCard(Card card)
+	public virtual void SetCard(Card card)
 	{
 		card.transform.position = transform.position;
 		this.card = card;
 	}
 
-	public void Free()
+	public virtual void Free()
 	{
-		Destroy(card.gameObject);
-		card= null;
+		card = null;
+	}
+
+	public virtual void FreeAndDestroyCard()
+	{
+		if (card != null)
+		{
+			Destroy(card.gameObject);
+			Free();
+		}
 	}
 
 	public Card GetCard() => card;
