@@ -5,45 +5,53 @@ using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
+	private const int MAX_INTERACTIONS_PER_TURN = 3;
+	
 	[SerializeField]
-	private Transform RoomCardPosition1;
+	private RoomCardPosition RoomCardPosition1;
 	[SerializeField] 
-	private Transform RoomCardPosition2;
+	private RoomCardPosition RoomCardPosition2;
 	[SerializeField] 
-	private Transform RoomCardPosition3;
+	private RoomCardPosition RoomCardPosition3;
 	[SerializeField] 
-	private Transform RoomCardPosition4;
-
-	private RoomCardPosition roomPosition1;
-	private RoomCardPosition roomPosition2;
-	private RoomCardPosition roomPosition3;
-	private RoomCardPosition roomPosition4;
+	private RoomCardPosition RoomCardPosition4;
 
 	private DeckManager deckManager;
-
+	private int numInteractions;
 	private List<Card> deck;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-		roomPosition1 = new RoomCardPosition(RoomCardPosition1);
-		roomPosition2 = new RoomCardPosition(RoomCardPosition2);
-		roomPosition3 = new RoomCardPosition(RoomCardPosition3);
-		roomPosition4 = new RoomCardPosition(RoomCardPosition4);
-
 		deckManager = FindFirstObjectByType<DeckManager>();
 
+		InputManager.OnSelectRoomPosition += OnSelectRoomPosition;
+
 		StartGame();
+	}
+
+	private void OnDestroy()
+	{
+		InputManager.OnSelectRoomPosition -= OnSelectRoomPosition;
 	}
 
 	private	void StartGame()
 	{
 		deck = deckManager.LoadDeck();
 
-		MoveCard(roomPosition1);
-		MoveCard(roomPosition2);
-		MoveCard(roomPosition3);
-		MoveCard(roomPosition4);
+		InitTurn();
+	}
+
+	private void InitTurn()
+	{
+		Debug.Log("init turn");
+
+		numInteractions = MAX_INTERACTIONS_PER_TURN;
+
+		MoveCard(RoomCardPosition1);
+		MoveCard(RoomCardPosition2);
+		MoveCard(RoomCardPosition3);
+		MoveCard(RoomCardPosition4);
 	}
 
 	private void MoveCard(RoomCardPosition roomPosition)
@@ -69,11 +77,33 @@ public class GameManager : MonoBehaviour
 			return null;
 		}
 
-		int k = Random.Range(0, deck.Count + 1);
+		int k = Random.Range(0, deck.Count);
 		var card = deck[k];
 		deck.Remove(card);
 
 		return card;
+	}
+
+	private void OnSelectRoomPosition(object sender, RoomCardPosition roomPosition)
+	{
+		if (!roomPosition.IsBusy())
+		{
+			return;
+		}
+
+		HandleCard(roomPosition);
+		numInteractions--;
+		if (numInteractions == 0)
+		{
+			InitTurn();
+		}
+	}
+
+	private void HandleCard(RoomCardPosition roomPosition)
+	{
+		var card = roomPosition.GetCard();
+		Debug.Log($"clicked on {card.GetSuit()} {card.GetValue()}");
+		roomPosition.Free();
 	}
 
 	// Update is called once per frame

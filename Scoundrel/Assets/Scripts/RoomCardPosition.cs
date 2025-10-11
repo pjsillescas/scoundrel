@@ -1,26 +1,26 @@
 using UnityEngine;
 
-public class RoomCardPosition
+public class RoomCardPosition : MonoBehaviour
 {
-	private Transform position;
-	private bool isBusy;
+	private Card card;
 
-	public RoomCardPosition(Transform position)
+	private void Awake()
 	{
-		this.position = position;
-		isBusy = false;
+		card = null;
 	}
-
-	public bool IsBusy() => isBusy;
+	public bool IsBusy() => card != null;
 
 	public void SetCard(Card card)
 	{
-		card.transform.position = position.position;
-		isBusy = true;
+		card.transform.position = transform.position;
+		this.card = card;
 	}
 
 	public void Free()
 	{
-		isBusy = false;
+		Destroy(card.gameObject);
+		card= null;
 	}
+
+	public Card GetCard() => card;
 }
