@@ -19,15 +19,18 @@ public class DeckManager : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-		LoadDeck();
+		//LoadDeck();
 	}
 
-	private void LoadDeck()
+	public List<Card> LoadDeck()
 	{
+		var validSuites = new List<Card.Suit>() { Card.Suit.Spades, Card.Suit.Clubs };
 		deck = new();
 
-		deckData.Data.Select(data => (Instantiate(CardPrefab).GetComponent<Card>()).Load(data, deckData.backTexture)).ToList().ForEach(deck.Add);
+		deckData.Data.Where(data => validSuites.Contains(data.suit) || data.value > 10)
+			.Select(data => (Instantiate(CardPrefab).GetComponent<Card>()).Load(data, deckData.backTexture)).ToList().ForEach(deck.Add);
 
+		deck.Shuffle();
 		var displacement = Vector3.zero;
 		deck.ForEach(card => {
 			displacement += new Vector3(0,0,-0.1f);
@@ -35,17 +38,9 @@ public class DeckManager : MonoBehaviour
 			card.transform.Rotate(90, 0, 0);
 		});
 
-		//StartCoroutine(WaitAndFlipDeck());
+		return deck;
 	}
-	/*
-	private IEnumerator WaitAndFlipDeck()
-	{
-		yield return new WaitForSeconds(2f);
-
-		deck.ForEach(card => card.Flip());
-		yield return null;
-	}
-	*/
+	
 	// Update is called once per frame
 	void Update()
 	{

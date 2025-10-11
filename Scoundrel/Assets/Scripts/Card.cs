@@ -42,6 +42,7 @@ public class Card : MonoBehaviour
 		var goForward = Mathf.Abs(transform.rotation.z) <= 0.01f;
 		var zTarget = goForward ? 180 : 0;
 		var angle = goForward ? 9 : -9;
+		angle *= 2;
 		var currentAngle = goForward ? 0 : 180;
 		while (Mathf.Abs(currentAngle - zTarget) > 0)
 		{
