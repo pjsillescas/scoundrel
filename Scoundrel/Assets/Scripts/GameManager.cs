@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
 
 		deck = deckManager.LoadDeck();
 		health = MAX_HEALTH;
+		OnHealthChanged?.Invoke(this, new HealthData() { health = health, damage = 0 });
 
 		InitTurn();
 	}
