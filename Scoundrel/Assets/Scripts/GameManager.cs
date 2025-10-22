@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
 		RoomCardPosition3.FreeAndDestroyCard();
 		RoomCardPosition4.FreeAndDestroyCard();
 
+		WeaponPosition.FreeAndDestroyCard();
+
 		deck = deckManager.LoadDeck();
 		health = MAX_HEALTH;
 

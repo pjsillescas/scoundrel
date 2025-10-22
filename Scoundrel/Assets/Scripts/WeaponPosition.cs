@@ -11,6 +11,12 @@ public class WeaponPosition : RoomCardPosition
 		lastVictimPosition.FreeAndDestroyCard();
 	}
 
+	public override void FreeAndDestroyCard()
+	{
+		base.FreeAndDestroyCard();
+		lastVictimPosition.FreeAndDestroyCard();
+	}
+
 	public override void SetCard(Card card)
 	{
 		FreeAndDestroyCard();
