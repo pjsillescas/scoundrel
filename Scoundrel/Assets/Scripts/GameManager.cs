@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -25,6 +27,9 @@ public class GameManager : MonoBehaviour
 	private RoomCardPosition RoomCardPosition3;
 	[SerializeField] 
 	private RoomCardPosition RoomCardPosition4;
+
+	[SerializeField]
+	private AttackChoiceWidget AttackChoiceWidget;
 
 	[SerializeField]
 	private WeaponPosition WeaponPosition;
@@ -128,17 +133,24 @@ public class GameManager : MonoBehaviour
 			return;
 		}
 
+		StartCoroutine(PlayActionCoroutine(roomPosition));
+	}
+
+	private IEnumerator PlayActionCoroutine(RoomCardPosition roomPosition)
+	{
 		numInteractions--;
-		HandleCard(roomPosition);
-		
+		yield return HandleCard(roomPosition);
+
 		Debug.Log($"numInteractions {numInteractions}");
 		if (numInteractions == 0)
 		{
 			InitTurn();
 		}
+
+		yield return null;
 	}
 
-	private void HandleCard(RoomCardPosition roomPosition)
+	private IEnumerator HandleCard(RoomCardPosition roomPosition)
 	{
 		var card = roomPosition.GetCard();
 		Debug.Log($"clicked on {card.GetSuit()} {card.GetValue()}");
@@ -155,9 +167,19 @@ public class GameManager : MonoBehaviour
 			case Card.Suit.Clubs:
 			case Card.Suit.Spades:
 			default:
-				DefeatEnemy(card);
+				var canUseWeapon = WeaponPosition.CanBeUsed(card);
+				if (canUseWeapon)
+				{
+					yield return AttackChoiceWidget.ChooseAttackType((type) => { DefeatEnemy(card, type); });
+				}
+				else
+				{
+					DefeatEnemy(card, AttackChoiceWidget.AttackType.Melee);
+				}
 				break;
 		}
+
+		yield return null;
 	}
 
 	private void EquipWeapon(Card card)
@@ -186,9 +208,10 @@ public class GameManager : MonoBehaviour
 	{
 		return value == 1 ? 14 : value;
 	}
-	private void DefeatEnemy(Card card)
+	private void DefeatEnemy(Card card, AttackChoiceWidget.AttackType attackType)
 	{
-		var canUseWeapon = WeaponPosition.CanBeUsed(card);
+		var canUseWeapon = attackType == AttackChoiceWidget.AttackType.Weapon;
+
 
 		int defense = canUseWeapon ? WeaponPosition.GetDefense() : 0;
 		int damage = Mathf.Clamp(GetAttack(card.GetValue()) - defense, 0, 15);
