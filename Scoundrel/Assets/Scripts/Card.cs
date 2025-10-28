@@ -59,4 +59,9 @@ public class Card : MonoBehaviour
 
 	public Suit GetSuit() => suit;
 	public int GetValue() => value;
+
+	public int GetAttackValue()
+	{
+		return value == 1 ? 14 : value;
+	}
 }

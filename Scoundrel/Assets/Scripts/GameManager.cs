@@ -204,17 +204,14 @@ public class GameManager : MonoBehaviour
 		OnHealthChanged?.Invoke(this, new HealthData() { health = health, damage = addedHealth });
 	}
 
-	private	int GetAttack(int value)
-	{
-		return value == 1 ? 14 : value;
-	}
+	
 	private void DefeatEnemy(Card card, AttackChoiceWidget.AttackType attackType)
 	{
 		var canUseWeapon = attackType == AttackChoiceWidget.AttackType.Weapon;
 
 
 		int defense = canUseWeapon ? WeaponPosition.GetDefense() : 0;
-		int damage = Mathf.Clamp(GetAttack(card.GetValue()) - defense, 0, 15);
+		int damage = Mathf.Clamp(card.GetAttackValue() - defense, 0, 15);
 		health = Mathf.Clamp(health - damage, 0, MAX_HEALTH);
 		OnHealthChanged?.Invoke(this, new HealthData() { health = health, damage = -damage });
 

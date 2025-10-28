@@ -43,6 +43,6 @@ public class WeaponPosition : RoomCardPosition
 		}
 
 		var victimCard = lastVictimPosition.GetCard();
-		return victimCard == null || victimCard.GetValue() >= card.GetValue();
+		return victimCard == null || victimCard.GetAttackValue() >= card.GetValue();
 	}
 }
