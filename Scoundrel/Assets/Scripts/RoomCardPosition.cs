@@ -1,7 +1,14 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomCardPosition : MonoBehaviour
 {
+	private const float MIN_SQRT_DISTANCE = 0.1f;
+
+	[SerializeField]
+	private float translationSpeed = 50.0f;
+
 	private Card card;
 
 	private void Awake()
@@ -12,8 +19,22 @@ public class RoomCardPosition : MonoBehaviour
 
 	public virtual void SetCard(Card card)
 	{
-		card.transform.position = transform.position;
 		this.card = card;
+
+		var direction = (transform.position - card.transform.position).normalized;
+		StartCoroutine(TranslateCard(direction));
+	}
+
+	private IEnumerator TranslateCard(Vector3 direction)
+	{
+		while((card.transform.position - transform.position).sqrMagnitude > MIN_SQRT_DISTANCE)
+		{
+			card.transform.position = card.transform.position + direction * translationSpeed * Time.deltaTime;
+			yield return new WaitForNextFrameUnit();
+		}
+
+		card.transform.position = transform.position;
+		yield return null;
 	}
 
 	public virtual void Free()
